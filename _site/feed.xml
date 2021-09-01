@@ -5,9 +5,184 @@
     <description>Software Engineer, Husband, Tolkien Fan, Father-To-Be</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>2021-05-10</pubDate>
-    <lastBuildDate>Mon, 10 May 2021 06:05:12 +0200</lastBuildDate>
+    <pubDate>2021-09-01</pubDate>
+    <lastBuildDate>Wed, 01 Sep 2021 14:34:21 +0200</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>📊 Show off your coding stats on your GitHub Profile using WakaTime</title>
+        <description>&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/max/700/1*EAX459Bx17zD6Xxvwi9NcA.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A neat way to spruce up your GitHub profile is to show your followers and visitors what languages you’ve been working with, and how much coding you’ve been getting done. As you can tell from the screenshot of my GitHub profile, I’ve worked mostly with Python and JavaScript.&lt;/p&gt;
+
+&lt;p&gt;Prerequisites to following this post:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A GitHub account&lt;/li&gt;
+  &lt;li&gt;A WakaTime account (free, set it up &lt;a href=&quot;https://wakatime.com&quot;&gt;here&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;A profile README (if you don’t have one, you can create it by following the &lt;a href=&quot;https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme&quot;&gt;GitHub docs&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To begin, edit your &lt;code class=&quot;highlighter-rouge&quot;&gt;README.md&lt;/code&gt; file and insert the following comments wherever you want the code stats to appear:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;s&quot;&gt;&amp;lt;!--START_SECTION:waka--&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;&amp;lt;!--END_SECTION:waka--&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Next, head over to https://wakatime.com and get your WakaTime API Key from your “Account Settings” in WakaTime, shown below:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/max/700/1*sf0YILfutJN-FCz0MhLPmw.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The next thing you’ll need to do is install the WakaTime plugin for whichever text editor or IDE you are using. The instructions for each of these varies, so your best bet to get it right is to follow the instructions listed on WakaTime. To see all of the supported editors and IDEs, look at &lt;a href=&quot;https://wakatime.com/plugins&quot;&gt;this page&lt;/a&gt;. Because I’m assuming most of you will be using VS Code, these are the instructions for setting up WakaTime in VS Code: https://wakatime.com/vs-code&lt;/p&gt;
+
+&lt;p&gt;Now, back in your GitHub repository, go to the “Settings” tab, and click “Secrets”. Create a new &lt;strong&gt;Repository Secret&lt;/strong&gt;, not an environment secret. The name of this secret should be &lt;code class=&quot;highlighter-rouge&quot;&gt;WAKATIME_API_KEY&lt;/code&gt;, and the value of the secret should be the API key you obtained in WakaTime earlier in the post.&lt;/p&gt;
+
+&lt;p&gt;Navigate to the “Actions” tab of your GitHub repository, and select “Set up a workflow yourself”, as shown below:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/max/700/1*_LKlZc3S-4spWjHPDtPnpg.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Paste the following code in the editor, and commit the changes:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Work Stats Readme&lt;/span&gt;
+
+&lt;span class=&quot;s&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;workflow_dispatch&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;schedule&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Runs every 2 hours&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cron&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*/2&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*&quot;&lt;/span&gt;
+
+&lt;span class=&quot;s&quot;&gt;jobs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;update-readme&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Update this repo's README&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;runs-on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ubuntu-latest&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;athul/waka-readme@master&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;s&quot;&gt;WAKATIME_API_KEY&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;$&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;As you can see, we’re only running this job to check our stats every 2 hours, so adjust as you see fit (tip: https://crontab.guru is a great way to visualize crons). Keep in mind, it may take time for your stats to appear (you need to log enough time in WakaTime, and give it enough data to actually report).&lt;/p&gt;
+
+&lt;p&gt;Hope you’ve enjoyed, comment below with your GitHub repositories if you tried this out, I’m looking forward to seeing all the stats 😊&lt;/p&gt;
+
+&lt;p&gt;Subscribe to me on &lt;a href=&quot;https://medium.com/@JakenH&quot;&gt;Medium&lt;/a&gt; for quicker access to updates.&lt;/p&gt;
+</description>
+        <pubDate>2021-09-01</pubDate>
+        <link>http://localhost:4000/articles/2021-08/github-stats-with-wakatime</link>
+        <guid isPermaLink="true">http://localhost:4000/articles/2021-08/github-stats-with-wakatime</guid>
+        
+        
+        <category>GitHub</category>
+        
+      </item>
+    
+      <item>
+        <title>🤖 Creating a Reddit Bot with Python and PRAW</title>
+        <description>&lt;p&gt;In this post, we will be creating a Reddit bot using the Python programming language and the PRAW package, which stands for “Python Reddit API Wrapper”. Our bot will scan the subreddit “/r/cartoons” for comments containing the phrase “Scooby Dooby Doo” (case insensitive), and reply to any comments containing that phrase with “Where are you?”, which will surely plant an &lt;a href=&quot;https://www.youtube.com/watch?v=eZXg6Uaxd2k&quot;&gt;earworm&lt;/a&gt; in the reader of the comment. There are a few prerequisites before we begin. You will need:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A Reddit Account&lt;/li&gt;
+  &lt;li&gt;Python installed on your machine&lt;/li&gt;
+  &lt;li&gt;Basic understanding of how Reddit works&lt;/li&gt;
+  &lt;li&gt;Basic understanding of Python&lt;/li&gt;
+  &lt;li&gt;A Supabase Account (This is free)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To begin, the first thing we need to do is create a Reddit app. Navigate to https://www.reddit.com/prefs/apps/, and scroll to the bottom of the page until you see the button that says “are you a developer? create an app…”, and click it to create a new Reddit app:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/max/408/1*cILXiOSgB9UYbIMBPGgrEA.png&quot; alt=&quot;Reddit’s “Create an app” button for developers&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Once the button has been pressed, you’ll see a form to fill out that will ask for the name of your app, what type of app you’ll be creating, a description, and some URLs. I would highly suggest you come up with a different concept than Scooby Doo for your app, but you can follow mine as a template. We will be creating a &lt;code class=&quot;highlighter-rouge&quot;&gt;script&lt;/code&gt; app. For the “about url” and “redirect uri” you can just put in your personal website link.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/max/700/1*wbLla29Uu5miYV9v_ioUyw.png&quot; alt=&quot;The “Create Application” form should have your app name, description, type, and urls&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Once you press “create app”, your app will be listed with a client key and a secret key, shown below. Note, I’ve redacted mine — yours will have a string of characters and numbers. Do not share these with anyone. Make note of these, or at least remember how to access them again later in this post.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/max/700/1*9DbNh0xXUkKqECGQe3j8iw.png&quot; alt=&quot;Your app in Reddit should now have a personal use script, a secret key, and your app’s other information.&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Next, create a Python project on your local machine. I’m on a Mac, and I will be creating my project in my &lt;code class=&quot;highlighter-rouge&quot;&gt;~/Documents&lt;/code&gt; directory, like so:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cd ~/Documents &amp;amp;&amp;amp; mkdir scooby-searcher &amp;amp;&amp;amp; cd scooby-searcher&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s use pipenv to manage packages and our virtual environment. To set pipenv up running Python 3.8, run the following command (If you don’t have pipenv yet, just run &lt;code class=&quot;highlighter-rouge&quot;&gt;pip install --user pipenv&lt;/code&gt; (or &lt;code class=&quot;highlighter-rouge&quot;&gt;brew install pipenv&lt;/code&gt; if you’re on a Mac):&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;pipenv --python 3.8&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This is where we’ll need to get the client and secret keys back out. We’re going to create a &lt;code class=&quot;highlighter-rouge&quot;&gt;.env&lt;/code&gt; file that will hold this information so that we can access these keys in our Python code. We are using using &lt;code class=&quot;highlighter-rouge&quot;&gt;.env&lt;/code&gt; file variables instead of just hard-coding the strings directly in our Python code, because we’re going to place this file in our &lt;code class=&quot;highlighter-rouge&quot;&gt;.gitignore&lt;/code&gt; so it is not tracked. This will stop us from inadvertently checking in our secret keys to our repository. You may be wondering — how will our hosted code know what the keys are in order to run? Not to worry, we’ll set up GitHub secrets and actions in a later post. Open your scooby-searcher directory in a text editor of your choice, then create a new file in the root of your project named &lt;code class=&quot;highlighter-rouge&quot;&gt;.env&lt;/code&gt; with the following contents:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;API_CLIENT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;YOUR_API_CLIENT&amp;gt;
+&lt;span class=&quot;nv&quot;&gt;API_SECRET&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;YOUR_API_SECRET&amp;gt;
+&lt;span class=&quot;nv&quot;&gt;REDDIT_USERNAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;YOUR_REDDIT_USERNAME&amp;gt;
+&lt;span class=&quot;nv&quot;&gt;REDDIT_PASSWORD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;YOUR_REDDIT_PASSWORD&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Now that we have our keys and our credentials in our project, we need some way to actually use them. To do this, we’ll need to install the PRAW package by running &lt;code class=&quot;highlighter-rouge&quot;&gt;pipenv install praw&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;With PRAW installed, we can create a new python file called &lt;code class=&quot;highlighter-rouge&quot;&gt;bot.py&lt;/code&gt; (any filename will do, really) and start our file off by “Logging in” to Reddit — via code:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;  &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;os&lt;/span&gt;
+  &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;praw&lt;/span&gt;
+  
+  &lt;span class=&quot;n&quot;&gt;reddit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;praw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Reddit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;username&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;environ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'REDDIT_USERNAME'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;environ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'REDDIT_PASSWORD'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;client_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;environ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'API_CLIENT'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;client_secret&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;environ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'API_SECRET'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;user_agent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Scooby Searcher Bot&quot;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;As you can see, logging in is extremely simple. We just call &lt;code class=&quot;highlighter-rouge&quot;&gt;praw.Reddit()&lt;/code&gt; with the parameters &lt;code class=&quot;highlighter-rouge&quot;&gt;username&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;password&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;client_id&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;client_secret&lt;/code&gt;, and &lt;code class=&quot;highlighter-rouge&quot;&gt;user_agent&lt;/code&gt;, each of which uses the &lt;code class=&quot;highlighter-rouge&quot;&gt;os.environ.get()&lt;/code&gt; function to access the variables stored in our &lt;code class=&quot;highlighter-rouge&quot;&gt;.env&lt;/code&gt; file. The &lt;code class=&quot;highlighter-rouge&quot;&gt;user_agent&lt;/code&gt; parameter is simply the name of our bot.&lt;/p&gt;
+
+&lt;p&gt;Next, let’s read some comments:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;  &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;os&lt;/span&gt;
+  &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;praw&lt;/span&gt;
+  
+  &lt;span class=&quot;n&quot;&gt;reddit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;praw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Reddit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;username&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;environ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'REDDIT_USERNAME'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;environ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'REDDIT_PASSWORD'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;client_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;environ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'API_CLIENT'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;client_secret&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;environ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'API_SECRET'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;user_agent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Scooby Searcher Bot&quot;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;comment&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reddit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subreddit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'cartoons'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;comments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;limit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;comment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;As you can see, it’s as simple as accessing the subreddit “cartoons” by using the &lt;code class=&quot;highlighter-rouge&quot;&gt;subreddit()&lt;/code&gt; function on our reddit instance, then chaining a function call to &lt;code class=&quot;highlighter-rouge&quot;&gt;comments()&lt;/code&gt; off of the return of the &lt;code class=&quot;highlighter-rouge&quot;&gt;subreddit()&lt;/code&gt; function call. We’re limiting the result to 1,000 comments, but feel free to change this number up. Shall we respond if we find a comment that matches “Scooby Dooby Doo”? Yes, let’s:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;  &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;os&lt;/span&gt;
+  &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;praw&lt;/span&gt;
+  
+  &lt;span class=&quot;n&quot;&gt;reddit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;praw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Reddit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;username&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;environ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'REDDIT_USERNAME'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;environ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'REDDIT_PASSWORD'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;client_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;environ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'API_CLIENT'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;client_secret&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;environ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'API_SECRET'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;user_agent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Scooby Searcher Bot&quot;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;comment&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reddit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subreddit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'cartoons'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;comments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;limit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;scooby dooby doo&quot;&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;comment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;comment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reply&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Where are you?&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;All we’ve added here is a check to see if &lt;code class=&quot;highlighter-rouge&quot;&gt;comment.body&lt;/code&gt; (modified to be all lower-case) contains the phrase “scooby dooby doo”, and if so, use the &lt;code class=&quot;highlighter-rouge&quot;&gt;reply()&lt;/code&gt; function on the comment that we access in our for-loop. Pretty neat, right?&lt;/p&gt;
+
+&lt;p&gt;To run your code, run the command &lt;code class=&quot;highlighter-rouge&quot;&gt;pipenv run python bot.py&lt;/code&gt;, and enjoy the results. In the next post, I’ll walk you through how to be sure you’re not responding to a comment that you’ve already responded to, so that subsequent runs don’t pester poor Reddit users too much. To do this, we’ll create a Supabase database to store comment ids that we’ve already responded to, and add a check to the code to see if that id exists in the database before replying to comments. We’ll also go over how to use GitHub secrets and actions so your bot can run on a timer instead of you having to manually run your code.&lt;/p&gt;
+
+&lt;p&gt;Subscribe to me on &lt;a href=&quot;https://medium.com/@JakenH&quot;&gt;Medium&lt;/a&gt; for quicker access to updates.&lt;/p&gt;
+</description>
+        <pubDate>2021-09-01</pubDate>
+        <link>http://localhost:4000/articles/2021-08/reddit-bot-praw</link>
+        <guid isPermaLink="true">http://localhost:4000/articles/2021-08/reddit-bot-praw</guid>
+        
+        
+        <category>Python</category>
+        
+        <category>Bots</category>
+        
+        <category>Reddit</category>
+        
+        <category>API</category>
+        
+      </item>
     
       <item>
         <title>New 'Scores' VS Code Extension Released</title>
@@ -23,7 +198,7 @@
 
 &lt;p&gt;Enjoy!&lt;/p&gt;
 </description>
-        <pubDate>2021-05-10</pubDate>
+        <pubDate>2021-09-01</pubDate>
         <link>http://localhost:4000/articles/2021-04/scores-extension-release</link>
         <guid isPermaLink="true">http://localhost:4000/articles/2021-04/scores-extension-release</guid>
         
@@ -181,7 +356,7 @@
 &lt;p&gt;Tada! The final product looks great, and it’s an easy way to visualize percentile data. I hope you’ve enjoyed this quick walkthrough. The full observable notebook is available here:
 &lt;a href=&quot;https://observablehq.com/@jakenherman/visualizing-percentile-data&quot;&gt;https://observablehq.com/@jakenherman/visualizing-percentile-data&lt;/a&gt;.&lt;/p&gt;
 </description>
-        <pubDate>2021-05-10</pubDate>
+        <pubDate>2021-09-01</pubDate>
         <link>http://localhost:4000/articles/2020-12/visualizing-percentile-data-with-d3</link>
         <guid isPermaLink="true">http://localhost:4000/articles/2020-12/visualizing-percentile-data-with-d3</guid>
         
@@ -1972,7 +2147,7 @@ $(document).ready(function () {
 
 &lt;/body&gt;
 </description>
-        <pubDate>2021-05-10</pubDate>
+        <pubDate>2021-09-01</pubDate>
         <link>http://localhost:4000/articles/2020-09/r-for-data-science-ch-1</link>
         <guid isPermaLink="true">http://localhost:4000/articles/2020-09/r-for-data-science-ch-1</guid>
         
@@ -2013,7 +2188,7 @@ $(document).ready(function () {
 
 &lt;p&gt;I hope this was helpful to you in your quest to begin working with Chadwick and Retrosheet. In the next post, we’ll download our first few Retrosheet files and begin exploring.&lt;/p&gt;
 </description>
-        <pubDate>2021-05-10</pubDate>
+        <pubDate>2021-09-01</pubDate>
         <link>http://localhost:4000/articles/2020-09/configuring-chadwick-on-vagrant</link>
         <guid isPermaLink="true">http://localhost:4000/articles/2020-09/configuring-chadwick-on-vagrant</guid>
         
@@ -2092,7 +2267,7 @@ When your initialization is complete, you’ll notice a file called &lt;code cla
 
 &lt;p&gt;Thanks for reading. Check back in the next post and we’ll get Chadwick downloaded and configured so we can begin playing around with Retrosheet data!&lt;/p&gt;
 </description>
-        <pubDate>2021-05-10</pubDate>
+        <pubDate>2021-09-01</pubDate>
         <link>http://localhost:4000/articles/2020-08/virtualbox-vagrant-setup</link>
         <guid isPermaLink="true">http://localhost:4000/articles/2020-08/virtualbox-vagrant-setup</guid>
         
@@ -2136,7 +2311,7 @@ When your initialization is complete, you’ll notice a file called &lt;code cla
 
 &lt;p&gt;I’d love to do many more draft visualizations and maybe even dip into some KBO numbers, but for now I’m going to call it a night! Thanks for stopping by.&lt;/p&gt;
 </description>
-        <pubDate>2021-05-10</pubDate>
+        <pubDate>2021-09-01</pubDate>
         <link>http://localhost:4000/articles/2020-06/simple-mlb-draft-20-visuals</link>
         <guid isPermaLink="true">http://localhost:4000/articles/2020-06/simple-mlb-draft-20-visuals</guid>
         
@@ -2297,7 +2472,7 @@ import 'ag-grid-community/dist/styles/ag-theme-balham.css';&lt;/code&gt;&lt;/pre
   }&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 </description>
-        <pubDate>2021-05-10</pubDate>
+        <pubDate>2021-09-01</pubDate>
         <link>http://localhost:4000/articles/2019-10/mlb-19-community-listings</link>
         <guid isPermaLink="true">http://localhost:4000/articles/2019-10/mlb-19-community-listings</guid>
         
@@ -2442,7 +2617,7 @@ export default App;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Thanks for reading, folks. Hope this taught you something.&lt;/p&gt;
 </description>
-        <pubDate>2021-05-10</pubDate>
+        <pubDate>2021-09-01</pubDate>
         <link>http://localhost:4000/articles/2019-09/react-helmet-dynamic-titles</link>
         <guid isPermaLink="true">http://localhost:4000/articles/2019-09/react-helmet-dynamic-titles</guid>
         
@@ -2450,135 +2625,6 @@ export default App;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
         <category>React</category>
         
         <category>JavaScript</category>
-        
-      </item>
-    
-      <item>
-        <title>Setting up Automatic React Application Deploys on Heroku Dynos</title>
-        <description>&lt;p&gt;Per the sub-title, this is “Part 1”. In this series, we’re going to build out a community market listing react application for MLB The Show 19 and set up an automatic pipeline to build and deploy our React application from a GitHub repository to a Heroku Dyno. In this post we will scaffold out the react app and get the automatic deployment set up for Heroku, which will prepare ourselves to create the components necessary to list out all listings for MLB The Show 19’s Community Market. Why MLB The Show 19? Because… it’s &lt;em&gt;baseball&lt;/em&gt;. If you’re not familiar with MLB The Show 19 - it’s a baseball video game for PlayStation 4 and it has a community market that allows players to list baseball cards, stadiums, and equipment that other players can buy to use for their team. In this project, we will only build out listings for baseball cards (i.e. players), not stadiums or equipment or anything else. If that is something that interests you, I would highly recommend you extend the application to meet your needs.&lt;/p&gt;
-
-&lt;p&gt;The first thing we need to do to get started is to create a GitHub repository to have source control over our application and to have a place to store our code. To do this, go to GitHub.com and create a GitHub repository. Then, to get that repository on your local machine, use either a git GUI program or just use the command line interface and run the following:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;git clone https://www.github.com/&amp;lt;path_to_your_project&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Then, change directories to your GitHub repository by running:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &amp;lt;your_project_name&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;The next thing we need to do is actually get into the meat and potatoes of the application. We need to build something to put on our newly created GitHub repository. To do this, we need to create a new react application. Open up your command line interface and run the command:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt; npx create-react-app mlb-the-show-community-market-listings
- &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;This command will install &lt;code class=&quot;highlighter-rouge&quot;&gt;react&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;react-dom&lt;/code&gt;,  &lt;code class=&quot;highlighter-rouge&quot;&gt;react-scripts&lt;/code&gt;, and a few other packages that you will find useful. &lt;code class=&quot;highlighter-rouge&quot;&gt;create-react-app&lt;/code&gt; is a facebook-supported way to create single-page React applications that many folks in the front-end community use. Unlike next, razzle, and a few other popular server-side rendering frameworks, CRA renders content on the client-side, which could have some downsides in performance, but we are not necessarily worried about that for the purposes of this project.&lt;/p&gt;
-
-&lt;p&gt;Now that your application has been created, let’s just leave it at that - we will make code changes in the next post. For right now, we’re going to check in the project as-is. So, via some git GUI or command line, commit your changes and push your code to your GitHub repository:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;git add .
-git commit -m &lt;span class=&quot;s1&quot;&gt;'initial commit'&lt;/span&gt;
-git push origin master&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;We want our Heroku Dyno to rebuild our application every time a change is made to the &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; branch on our GitHub repository. But before we set this up, we need to create a Heroku Pipeline! Assuming you already have a Heroku application created, navigate to dashboard.heroku.com/apps, then select “New” followed by “Create new pipeline”. In the pipeline name input field, type ‘mlb-the-show-cm-listings’. Next, set yourself to be the Pipeline owner, then in the area that says “Connect to GitHub”, connect your GitHub account to this Heroku pipeline. Once you’ve connected your GitHub account, select the GitHub repository we created earlier in the post by searching for the repository name, then press the “Connect” button. Once your GitHub repository has been connected, press the “Create pipeline” button.&lt;/p&gt;
-
-&lt;p&gt;Once your pipeline has been created, you will see a page that has three “steps”: Review Apps, Staging, Production. In the card underneath the “Staging” step, press the “Add app…” button, followed by the purple “Create new app…” button. In the app name, you’ll have to think of something on your own, as heroku app names must be unique. Once you’ve decided on a name, press the “Create app” button to finalize the app creation.&lt;/p&gt;
-
-&lt;p&gt;Now under your “Staging” area, the card you see will contain your newly created app. Click on your app name under the “Staging” area to open the Heroku app, then go to “Settings”. Scroll down until you see the section labeled “Buildpacks”. Press the purple “Add buildpack” button, then select the &lt;code class=&quot;highlighter-rouge&quot;&gt;nodejs&lt;/code&gt; buildpack from the list of officially supported buildpacks, then press “Save changes”.&lt;/p&gt;
-
-&lt;p&gt;Next, navigate away from “Settings” by clicking on the “Deploy” tab. Scroll down until you reach the section labeled “Automatic deploys”. Press the gray “Enable Automatic Deploys” button. You will see the text change to read&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Automatic deploys from &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; are enabled&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Now, we just need to trigger the deploy. Let’s make a change to our project and commit/push the changes so our Heroku deploy will be triggered.&lt;/p&gt;
-
-&lt;p&gt;Open the &lt;code class=&quot;highlighter-rouge&quot;&gt;src&lt;/code&gt; folder of your React app we created earlier in this post, and in &lt;code class=&quot;highlighter-rouge&quot;&gt;App.js&lt;/code&gt;, change the line that says:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;
-  Edit &lt;span class=&quot;nt&quot;&gt;&amp;lt;code&amp;gt;&lt;/span&gt;src/App.js&lt;span class=&quot;nt&quot;&gt;&amp;lt;/code&amp;gt;&lt;/span&gt; and save to reload.
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;to&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;Hello Heroku!&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Next, via some git GUI or command line, commit your changes and push your code to your GitHub repository:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;git add .
-git commit -m &lt;span class=&quot;s1&quot;&gt;'trigger heroku deploy'&lt;/span&gt;
-git push origin master&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Now navigate to your heroku app’s activity page to see if a build was triggered: &lt;code class=&quot;highlighter-rouge&quot;&gt;https://dashboard.heroku.com/apps/&amp;lt;your_app_name&amp;gt;/activity&lt;/code&gt;. If the build failed due to a message similar to this&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;A Node.js app on Heroku requires a ‘package.json’ at the root of the directory structure.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;then all you need to do is make sure your github repository doesn’t consist of another folder containing your react app rather than the repository containing the react app itself.&lt;/p&gt;
-
-&lt;p&gt;Another common issue is having an outdated Yarn lockfile, so if you still get a build failure, go to your command line (within your react app directory), and run the following commands:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;yarn install
-git add yarn.lock
-git commit -m &lt;span class=&quot;s1&quot;&gt;'updated yarn lockfile'&lt;/span&gt;
-git push origin master&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;If you don’t have a failure, you will see “Build in progress…” for a while, which will then change to “Build succeeded”. Once you have a “Build succeed”, a new activity will be created on your activity feed and it will say “Deployed &lt;code class=&quot;highlighter-rouge&quot;&gt;SHA_OF_YOUR_COMMIT&lt;/code&gt;”.&lt;/p&gt;
-
-&lt;p&gt;So that’s great - we’ve set up a Heroku dyno to automatically deploy our react application when a change is made. The only problem is… where does it deploy to? Navigate away from the “Activity” tab and go to “Settings” again. Scroll down until you see “Domains and certificates”. In the “Domain” section, you will see a line like:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Your app can be found at &lt;some_link_to_your_app&gt;&lt;/some_link_to_your_app&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Navigating to that domain address will show your application. Keep in mind, you can add a custom domain at any point.&lt;/p&gt;
-
-&lt;p&gt;Fantastic - now we’ve got a react app automatically deploying to a Heroku dyno, now we just need that react app to do something cool! In the next post, we’ll begin creating the React components necessary to view the Community Market listings.&lt;/p&gt;
-</description>
-        <pubDate>2021-05-10</pubDate>
-        <link>http://localhost:4000/articles/2019-09/mlb-19-community-listings</link>
-        <guid isPermaLink="true">http://localhost:4000/articles/2019-09/mlb-19-community-listings</guid>
-        
-        
-        <category>React</category>
-        
-        <category>JavaScript</category>
-        
-        <category>API</category>
-        
-        <category>Heroku</category>
-        
-      </item>
-    
-      <item>
-        <title>DailyUI Challenge 002</title>
-        <description>&lt;p&gt;&lt;img src=&quot;https://media.licdn.com/dms/image/C5622AQF24cV88T9mVw/feedshare-shrink_8192/0?e=1568851200&amp;amp;v=beta&amp;amp;t=tjqFnhHhl793SCviu7nDJMeGZUqt7SJenAo8bnuCWK4&quot; style=&quot;width: auto&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;DailyUI challenge 002 - Design a credit card checkout form or page. Did this one without a wire-framing tool - instead opted to just use HTML, CSS, and JavaScript. I only worked on it for about an hour, so I’m not too upset with the results. The card type icon (Visa, MasterCard, AMEX, etc. does change depending on the start of the card number).&lt;/p&gt;
-
-&lt;p&gt;Things I could improve on:
- - The fonts are pretty ugly, I’d like to spend more time browsing available fonts.
- - Responsiveness. Because this was just part of a challenge and not production code, I did not consider mobile viewing in the design.&lt;/p&gt;
-
-&lt;p&gt;CodePen Link : https://codepen.io/JakenHerman/pen/MWgKNvm
-Dribble Link : https://dribbble.com/shots/6990265-Credit-Card-Checkout-DailyUI-002&lt;/p&gt;
-</description>
-        <pubDate>2021-05-10</pubDate>
-        <link>http://localhost:4000/articles/2019-06/dailyui-002</link>
-        <guid isPermaLink="true">http://localhost:4000/articles/2019-06/dailyui-002</guid>
-        
-        
-        <category>UX</category>
-        
-        <category>UI</category>
-        
-        <category>Wireframe</category>
-        
-        <category>CSS</category>
-        
-        <category>JavaScript</category>
-        
-        <category>CodePen</category>
         
       </item>
     

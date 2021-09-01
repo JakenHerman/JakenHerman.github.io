@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="In this post, we will be creating a Reddit bot using the Python programming language and the PRAW package, which stands for “Python Reddit API Wrapper”.">
+  <meta name="keywords" content="blog, jaken, herman, software, and engineer">
+  <meta name="author" content="🤖 Creating a Reddit Bot with Python and PRAW | Jaken Herman">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f5f5">
+
+  <script data-ad-client="ca-pub-9580564349953922" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <!-- Twitter Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="🤖 Creating a Reddit Bot with Python and PRAW | Jaken Herman">
+  <meta name="twitter:description" content="In this post, we will be creating a Reddit bot using the Python programming language and the PRAW package, which stands for “Python Reddit API Wrapper”.">
+  
+    <meta property="twitter:image" content="http://localhost:4000/img/leonids-logo.png">
+  
+
+  <!-- Open Graph Tags -->
+  <meta property="og:type" content="blog">
+  <meta property="og:url" content="http://localhost:4000/articles/2021-08/reddit-bot-praw">
+  <meta property="og:title" content="🤖 Creating a Reddit Bot with Python and PRAW | Jaken Herman">
+  <meta property="og:description" content="In this post, we will be creating a Reddit bot using the Python programming language and the PRAW package, which stands for “Python Reddit API Wrapper”.">
+  
+    <meta property="og:image" content="http://localhost:4000/img/leonids-logo.png">
+  
+  <title>🤖 Creating a Reddit Bot with Python and PRAW | Jaken Herman</title>
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="http://localhost:4000/css/main.css">
+  
+  <!-- FontAwesome -->
+  <script src="https://kit.fontawesome.com/12caf75e50.js"></script>
+
+  <link rel="canonical" href="http://localhost:4000/articles/2021-08/reddit-bot-praw">
+  <link rel="alternate" type="application/rss+xml" title="Jaken Herman" href="http://localhost:4000/feed.xml" />
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+</head>
+
+
+<body>
+  <div class="row">
+    <div class="col s12 m3">
+      <div class="table cover">
+        
+
+<div class="cover-card table-cell table-middle">
+  
+  <a aria-label="Jaken Herman Website Link" href="http://localhost:4000/">
+    <img src="http://localhost:4000/img/avatar.jpg" alt="An Image of Jaken Herman" class="avatar">
+  </a>
+  
+  <a href="http://localhost:4000/" class="author_name">jaken herman</a>
+  <span class="author_job">🧬 Software Developer for Othram 🧬</span>
+  <span class="author_bio mbm">husband | tolkien fan | traveler | brewer of beer | father-to-be</span>
+  <nav class="nav">
+    <ul class="nav-list">
+      <li class="nav-item">
+        <a aria-label="Jaken Herman Website Link" href="http://localhost:4000/">home</a>
+      </li>
+       
+      <li class="nav-item">
+        <a aria-label="Navigate to Article - Archive" href="http://localhost:4000/archive/">Archive</a>
+      </li>
+        
+      <li class="nav-item">
+        <a aria-label="Navigate to Article - Contact" href="http://localhost:4000/contact/">Contact</a>
+      </li>
+            
+      <li class="nav-item">
+        <a aria-label="Navigate to Article - Categories" href="http://localhost:4000/categories/">Categories</a>
+      </li>
+          
+      <li class="nav-item">
+        <a aria-label="Navigate to Article - Resume" href="http://localhost:4000/resume/">Resume</a>
+      </li>
+        
+      <li class="nav-item">
+        <a aria-label="Navigate to Article - Stream" href="http://localhost:4000/stream/">Stream</a>
+      </li>
+         
+    </ul>
+  </nav>
+  <script type="text/javascript">
+  // based on http://stackoverflow.com/a/10300743/280842
+  function gen_mail_to_link(hs, subject) {
+    var lhs,rhs;
+    var p = hs.split('@');
+    lhs = p[0];
+    rhs = p[1];
+    document.write("<a aria-label=\"Email Jaken Herman\" class=\"social-link-item\" target=\"_blank\" href=\"mailto");
+    document.write(":" + lhs + "@");
+    document.write(rhs + "?subject=" + subject + "\"><i class=\"fa fa-fw fa-envelope\"></i><\/a>");
+  }
+</script>
+<div class="social-links">
+  <ul>
+    
+      <li>
+      <script>gen_mail_to_link('jakenherman7@gmail.com', 'Hello from website');</script>
+      </li>
+    
+    <li><a aria-label="Go to Jaken Herman's Twitter Page" rel="noreferrer" href="http://twitter.com/jakenherman" class="social-link-item" target="_blank"><i class="fab fa-twitter"></i></a></li>
+    <li><a aria-label="Go to Jaken Herman's TripAdvisor Page" rel="noreferrer" href="https://www.tripadvisor.com/Profile/jakenherman" class="social-link-item" target="_blank"><i class="fab fa-tripadvisor"></i></a></li>
+   <!--  -->
+    
+    
+    <li><a aria-label="Go to Jaken Herman's LinkedIn Page" rel="noreferrer" href="http://linkedin.com/in/jakenherman" class="social-link-item" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+    <li><a aria-label="Go to Jaken Herman's Yelp Page" rel="noreferrer" href="https://www.yelp.com/user_details?userid=Wu6Cbv_59QNDmNlw02cqMA" class="social-link-item" target="_blank"><i class="fab fa-yelp"></i></a></li>
+    <li><a aria-label="Skype with Jaken Herman" rel="noreferrer" href="skype:jaken2711" class="social-link-item" target="_blank"><i class="fab fa-skype"></i></a></li>
+    
+    <li><a aria-label="Go to Jaken Herman's Instagram Page" rel="noreferrer" href="http://instagram.com/jaken.herman" class="social-link-item" target="_blank"><i class="fab fa-instagram"></i></a></li>
+    
+    <li><a aria-label="Go to Jaken Herman's GitHub Page" rel="noreferrer" href="http://github.com/JakenHerman" class="social-link-item" target="_blank"><i class="fab fa-github"></i></a></li>
+    
+    <li><a aria-label="Go to Jaken Herman's StackOverflow Page" rel="noreferrer" href="http://stackoverflow.com/users/2752265/jaken-herman?tab=profile" class="social-link-item" target="_blank"><i class="fab fa-stack-overflow"></i></a></li>
+    
+    <li><a rel="noreferrer" href="http://dribbble.com/jakenherman" class="social-link-item" target="_blank"><i class="fab fa-dribbble"></i></a></li>
+    
+    
+    <li><a rel="noreferrer" href="http://steamcommunity.com/id/dead1117" class="social-link-item" target="_blank"><i class="fab fa-steam"></i></a></li>
+    <li><a aria-label="Go to Jaken Herman's YouTube Channel" rel="noreferrer" href="http://bit.ly/thehermans" class="social-link-item" target="_blank"><i class="fab fa-youtube"></i></a></li>
+    
+    
+    
+    
+    <li><a rel="noreferrer" href="http://codepen.io/JakenHerman" class="social-link-item" target="_blank"><i class="fab fa-codepen"></i></a></li>
+    
+    
+    <li><a aria-label="Go to Jaken Herman's Amazon Author Page" rel="noreferrer" href="https://amazon.com/author/jakenherman" class="social-link-item" target="_blank"><i class="fab fa-amazon"></i></a></li>
+    <li><a aria-label="Go to Jaken Herman's Strava Page" rel="noreferrer" href="https://strava.com/athletes/jaken_herman" class="social-link-item" target="_blank"><i class="fab fa-strava"></i></a>
+    </li>
+    <li><a aria-label="Go to Jaken Herman's Dev Page" rel="noreferrer" href="https://dev.to/jakenherman" class="social-link-item" target="_blank"><i class="fab fa-dev"></i></a></li>
+    <li><a aria-label="Go to Jaken Herman's Untappd Page" rel="noreferrer" href="https://untappd.com/user/JakenH" class="social-link-item" target="_blank"><i class="fab fa-untappd"></i></a></li>
+  </ul>
+</div>
+
+  <strong><a href='https://www.lazy.com/jaken'>lazy.com/jaken</a></strong>
+  <br />
+  <p><strong>fan of:</strong>&nbsp;chess, crosswords, gardening, reading, runescape, crypto</p>
+</div>
+
+      </div>
+    </div>
+    <div class="col s12 m9">
+      <div class="post-listing">
+        <a class="btn" href= "http://localhost:4000/" >
+  Home
+</a>
+
+
+
+<div id="post">
+  <header class="post-header">
+    <h1 title="🤖 Creating a Reddit Bot with Python and PRAW">🤖 Creating a Reddit Bot with Python and PRAW</h1>
+    <span class="post-meta">
+      <span class="post-date">
+        30 AUG 2021
+      </span>
+      •
+      <span class="read-time" title="Estimated read time">
+  
+  
+    7 mins read
+  
+</span>
+
+    </span>
+
+  </header>
+
+  <article class="post-content">
+    <p>In this post, we will be creating a Reddit bot using the Python programming language and the PRAW package, which stands for “Python Reddit API Wrapper”. Our bot will scan the subreddit “/r/cartoons” for comments containing the phrase “Scooby Dooby Doo” (case insensitive), and reply to any comments containing that phrase with “Where are you?”, which will surely plant an <a href="https://www.youtube.com/watch?v=eZXg6Uaxd2k">earworm</a> in the reader of the comment. There are a few prerequisites before we begin. You will need:</p>
+
+<ul>
+  <li>A Reddit Account</li>
+  <li>Python installed on your machine</li>
+  <li>Basic understanding of how Reddit works</li>
+  <li>Basic understanding of Python</li>
+  <li>A Supabase Account (This is free)</li>
+</ul>
+
+<p>To begin, the first thing we need to do is create a Reddit app. Navigate to https://www.reddit.com/prefs/apps/, and scroll to the bottom of the page until you see the button that says “are you a developer? create an app…”, and click it to create a new Reddit app:</p>
+
+<p><img src="https://miro.medium.com/max/408/1*cILXiOSgB9UYbIMBPGgrEA.png" alt="Reddit’s “Create an app” button for developers" /></p>
+
+<p>Once the button has been pressed, you’ll see a form to fill out that will ask for the name of your app, what type of app you’ll be creating, a description, and some URLs. I would highly suggest you come up with a different concept than Scooby Doo for your app, but you can follow mine as a template. We will be creating a <code class="highlighter-rouge">script</code> app. For the “about url” and “redirect uri” you can just put in your personal website link.</p>
+
+<p><img src="https://miro.medium.com/max/700/1*wbLla29Uu5miYV9v_ioUyw.png" alt="The “Create Application” form should have your app name, description, type, and urls" /></p>
+
+<p>Once you press “create app”, your app will be listed with a client key and a secret key, shown below. Note, I’ve redacted mine — yours will have a string of characters and numbers. Do not share these with anyone. Make note of these, or at least remember how to access them again later in this post.</p>
+
+<p><img src="https://miro.medium.com/max/700/1*9DbNh0xXUkKqECGQe3j8iw.png" alt="Your app in Reddit should now have a personal use script, a secret key, and your app’s other information." /></p>
+
+<p>Next, create a Python project on your local machine. I’m on a Mac, and I will be creating my project in my <code class="highlighter-rouge">~/Documents</code> directory, like so:</p>
+
+<p><code class="highlighter-rouge">cd ~/Documents &amp;&amp; mkdir scooby-searcher &amp;&amp; cd scooby-searcher</code></p>
+
+<p>Let’s use pipenv to manage packages and our virtual environment. To set pipenv up running Python 3.8, run the following command (If you don’t have pipenv yet, just run <code class="highlighter-rouge">pip install --user pipenv</code> (or <code class="highlighter-rouge">brew install pipenv</code> if you’re on a Mac):</p>
+
+<p><code class="highlighter-rouge">pipenv --python 3.8</code></p>
+
+<p>This is where we’ll need to get the client and secret keys back out. We’re going to create a <code class="highlighter-rouge">.env</code> file that will hold this information so that we can access these keys in our Python code. We are using using <code class="highlighter-rouge">.env</code> file variables instead of just hard-coding the strings directly in our Python code, because we’re going to place this file in our <code class="highlighter-rouge">.gitignore</code> so it is not tracked. This will stop us from inadvertently checking in our secret keys to our repository. You may be wondering — how will our hosted code know what the keys are in order to run? Not to worry, we’ll set up GitHub secrets and actions in a later post. Open your scooby-searcher directory in a text editor of your choice, then create a new file in the root of your project named <code class="highlighter-rouge">.env</code> with the following contents:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">API_CLIENT</span><span class="o">=</span>&lt;YOUR_API_CLIENT&gt;
+<span class="nv">API_SECRET</span><span class="o">=</span>&lt;YOUR_API_SECRET&gt;
+<span class="nv">REDDIT_USERNAME</span><span class="o">=</span>&lt;YOUR_REDDIT_USERNAME&gt;
+<span class="nv">REDDIT_PASSWORD</span><span class="o">=</span>&lt;YOUR_REDDIT_PASSWORD&gt;</code></pre></figure>
+
+<p>Now that we have our keys and our credentials in our project, we need some way to actually use them. To do this, we’ll need to install the PRAW package by running <code class="highlighter-rouge">pipenv install praw</code>.</p>
+
+<p>With PRAW installed, we can create a new python file called <code class="highlighter-rouge">bot.py</code> (any filename will do, really) and start our file off by “Logging in” to Reddit — via code:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">  <span class="kn">import</span> <span class="nn">os</span>
+  <span class="kn">import</span> <span class="nn">praw</span>
+  
+  <span class="n">reddit</span> <span class="o">=</span> <span class="n">praw</span><span class="o">.</span><span class="n">Reddit</span><span class="p">(</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'REDDIT_USERNAME'</span><span class="p">),</span>
+	<span class="n">password</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'REDDIT_PASSWORD'</span><span class="p">),</span>
+	<span class="n">client_id</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'API_CLIENT'</span><span class="p">),</span>
+	<span class="n">client_secret</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'API_SECRET'</span><span class="p">),</span>
+	<span class="n">user_agent</span> <span class="o">=</span> <span class="s">"Scooby Searcher Bot"</span>
+  <span class="p">)</span></code></pre></figure>
+
+<p>As you can see, logging in is extremely simple. We just call <code class="highlighter-rouge">praw.Reddit()</code> with the parameters <code class="highlighter-rouge">username</code>, <code class="highlighter-rouge">password</code>, <code class="highlighter-rouge">client_id</code>, <code class="highlighter-rouge">client_secret</code>, and <code class="highlighter-rouge">user_agent</code>, each of which uses the <code class="highlighter-rouge">os.environ.get()</code> function to access the variables stored in our <code class="highlighter-rouge">.env</code> file. The <code class="highlighter-rouge">user_agent</code> parameter is simply the name of our bot.</p>
+
+<p>Next, let’s read some comments:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">  <span class="kn">import</span> <span class="nn">os</span>
+  <span class="kn">import</span> <span class="nn">praw</span>
+  
+  <span class="n">reddit</span> <span class="o">=</span> <span class="n">praw</span><span class="o">.</span><span class="n">Reddit</span><span class="p">(</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'REDDIT_USERNAME'</span><span class="p">),</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'REDDIT_PASSWORD'</span><span class="p">),</span>
+	<span class="n">client_id</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'API_CLIENT'</span><span class="p">),</span>
+	<span class="n">client_secret</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'API_SECRET'</span><span class="p">),</span>
+	<span class="n">user_agent</span> <span class="o">=</span> <span class="s">"Scooby Searcher Bot"</span>
+  <span class="p">)</span>
+
+  <span class="k">for</span> <span class="n">comment</span> <span class="ow">in</span> <span class="n">reddit</span><span class="o">.</span><span class="n">subreddit</span><span class="p">(</span><span class="s">'cartoons'</span><span class="p">)</span><span class="o">.</span><span class="n">comments</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">comment</span><span class="o">.</span><span class="n">body</span><span class="p">)</span></code></pre></figure>
+
+<p>As you can see, it’s as simple as accessing the subreddit “cartoons” by using the <code class="highlighter-rouge">subreddit()</code> function on our reddit instance, then chaining a function call to <code class="highlighter-rouge">comments()</code> off of the return of the <code class="highlighter-rouge">subreddit()</code> function call. We’re limiting the result to 1,000 comments, but feel free to change this number up. Shall we respond if we find a comment that matches “Scooby Dooby Doo”? Yes, let’s:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">  <span class="kn">import</span> <span class="nn">os</span>
+  <span class="kn">import</span> <span class="nn">praw</span>
+  
+  <span class="n">reddit</span> <span class="o">=</span> <span class="n">praw</span><span class="o">.</span><span class="n">Reddit</span><span class="p">(</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'REDDIT_USERNAME'</span><span class="p">),</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'REDDIT_PASSWORD'</span><span class="p">),</span>
+	<span class="n">client_id</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'API_CLIENT'</span><span class="p">),</span>
+	<span class="n">client_secret</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'API_SECRET'</span><span class="p">),</span>
+	<span class="n">user_agent</span> <span class="o">=</span> <span class="s">"Scooby Searcher Bot"</span>
+  <span class="p">)</span>
+
+  <span class="k">for</span> <span class="n">comment</span> <span class="ow">in</span> <span class="n">reddit</span><span class="o">.</span><span class="n">subreddit</span><span class="p">(</span><span class="s">'cartoons'</span><span class="p">)</span><span class="o">.</span><span class="n">comments</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="k">if</span> <span class="s">"scooby dooby doo"</span> <span class="ow">in</span> <span class="n">comment</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+        <span class="n">comment</span><span class="o">.</span><span class="n">reply</span><span class="p">(</span><span class="s">"Where are you?"</span><span class="p">)</span></code></pre></figure>
+
+<p>All we’ve added here is a check to see if <code class="highlighter-rouge">comment.body</code> (modified to be all lower-case) contains the phrase “scooby dooby doo”, and if so, use the <code class="highlighter-rouge">reply()</code> function on the comment that we access in our for-loop. Pretty neat, right?</p>
+
+<p>To run your code, run the command <code class="highlighter-rouge">pipenv run python bot.py</code>, and enjoy the results. In the next post, I’ll walk you through how to be sure you’re not responding to a comment that you’ve already responded to, so that subsequent runs don’t pester poor Reddit users too much. To do this, we’ll create a Supabase database to store comment ids that we’ve already responded to, and add a check to the code to see if that id exists in the database before replying to comments. We’ll also go over how to use GitHub secrets and actions so your bot can run on a timer instead of you having to manually run your code.</p>
+
+<p>Subscribe to me on <a href="https://medium.com/@JakenH">Medium</a> for quicker access to updates.</p>
+
+    <!-- Horizontal Display Unit Personal Site -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9580564349953922"
+     data-ad-slot="1624547715"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+  </article>
+</div>
+
+<div class="share-buttons">
+  <h6>Share on: </h6>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=http://localhost:4000/articles/2021-08/reddit-bot-praw" class="twitter btn" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/articles/2021-08/reddit-bot-praw" class="facebook btn" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=http://localhost:4000/articles/2021-08/reddit-bot-praw" class="google-plus btn" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+    <li>
+      <a href="https://news.ycombinator.com/submitlink?u=http://localhost:4000/articles/2021-08/reddit-bot-praw" class="hacker-news btn" title="Share on Hacker News"><i class="fa fa-hacker-news"></i><span> Hacker News</span></a>
+    </li>
+    <li>
+      <a href="https://www.reddit.com/submit?url=http://localhost:4000/articles/2021-08/reddit-bot-praw" class="reddit btn" title="Share on Reddit"><i class="fa fa-reddit"></i><span> Reddit</span></a>
+    </li>
+  </ul>
+</div><!-- end share-buttons -->
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'jakenherman-com';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+        <footer>
+  &copy; 2021 jaken herman. Powered by <a href="http://jekyllrb.com/">Jekyll</a>, <a href="http://github.com/renyuanz/leonids/">leonids theme</a> made with <i class="fa fa-heart heart-icon"></i>
+</footer>
+
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="http://localhost:4000/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="http://localhost:4000/js/main.js"></script>
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-134666359-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+</body>
+</html>
